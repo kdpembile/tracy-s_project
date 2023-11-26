@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyExpensesTracker</string>
+    <string name="add_expense_activity">AddExpenseActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!--main activity-->
+    <string name="button_add_expense">Add Expense</string>
+    <string name="text_view_expense_item">Expense Item</string>
+    <string name="text_input_title">Title</string>
+    <string name="text_input_price">Price</string>
+    <string name="button_save">Save</string>
+    <string name="toolbar_title">Tracy\'s Expenses</string>
+    <string name="add_expense_toolbar_title">Add Expense</string>
+    <string name="update_delete_expense_toolbar_text_view">Update Delete Expense</string>
+    <string name="button_update">Update</string>
+    <string name="button_delete">Delete</string>
+
+</resources>

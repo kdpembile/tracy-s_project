@@ -1,0 +1,7 @@
+
+»
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ñÐ«½ùÿÿÿÿ8Ä«“êÀ1
+Q
+java:S1874%"/Remove this use of "execute"; it is deprecated.(£Î«‘úÿÿÿÿ8‚Ê”êÀ1
+S
+java:S1874)"1Remove this use of "AsyncTask"; it is deprecated.(õ¾­îýÿÿÿÿ8„Ê”êÀ1

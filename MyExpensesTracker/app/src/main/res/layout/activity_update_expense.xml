@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UpdateDeleteExpenseActivity">
+    tools:context=".activities.UpdateExpenseActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/update_delete_toolbar"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/update_delete_expense_title"
+            android:id="@+id/update_expense_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -54,7 +54,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/update_delete_expense_price"
+            android:id="@+id/update_expense_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -69,7 +69,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
-            android:id="@+id/update_delete_expense_date"
+            android:id="@+id/update_expense_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -79,7 +79,7 @@
             android:inputType="date" />
 
         <EditText
-            android:id="@+id/update_delete_expense_description"
+            android:id="@+id/update_expense_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -98,16 +98,6 @@
             android:layout_marginBottom="10dp"
             android:onClick="update"
             android:text="@string/button_update" />
-
-        <Button
-            android:id="@+id/button_delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="delete"
-            android:text="@string/button_delete" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

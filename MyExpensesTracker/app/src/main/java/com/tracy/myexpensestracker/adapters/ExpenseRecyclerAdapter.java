@@ -17,6 +17,7 @@ import java.util.List;
 public class ExpenseRecyclerAdapter extends RecyclerView.Adapter<ExpenseRecyclerAdapter.MyViewHolder> {
 
     private List<Expense> expenses = new ArrayList<>();
+    private OnItemClickListener listener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -25,6 +26,12 @@ public class ExpenseRecyclerAdapter extends RecyclerView.Adapter<ExpenseRecycler
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.ExpenseItem);
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(expenses.get(position));
+                }
+            });
         }
     }
 
@@ -49,8 +56,20 @@ public class ExpenseRecyclerAdapter extends RecyclerView.Adapter<ExpenseRecycler
         return expenses.size();
     }
 
+    public Expense getExpenseAt(int position) {
+        return expenses.get(position);
+    }
+
     public void setExpenses(List<Expense> expenses) {
         this.expenses = expenses;
         notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Expense expense);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

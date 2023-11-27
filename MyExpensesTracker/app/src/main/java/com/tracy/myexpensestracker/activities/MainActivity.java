@@ -3,14 +3,14 @@ package com.tracy.myexpensestracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +40,32 @@ public class MainActivity extends AppCompatActivity {
 
         expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
         expenseViewModel.getAllExpenses().observe(this, expenseRecyclerAdapter::setExpenses);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                expenseViewModel.delete(expenseRecyclerAdapter.getExpenseAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(MainActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+
+        expenseRecyclerAdapter.setOnItemClickListener(new ExpenseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Expense expense) {
+                Intent intent = new Intent(MainActivity.this, UpdateExpenseActivity.class);
+                intent.putExtra("Id", expense.getId());
+                intent.putExtra("Title", expense.getTitle());
+                intent.putExtra("Price", expense.getPrice());
+                intent.putExtra("Date", expense.getDate());
+                intent.putExtra("Description", expense.getDescription());
+                someActivityResultLauncher.launch(intent);
+            }
+        });
     }
 
     public void addExpense(View view) {
@@ -60,6 +86,29 @@ public class MainActivity extends AppCompatActivity {
 
                     Expense expense = new Expense(title, price, date, description);
                     expenseViewModel.insert(expense);
+                } else if (result.getResultCode() == UpdateExpenseActivity.UPDATE_OK && result.getData() != null) {
+                    Intent data = result.getData();
+
+                    int id = data.getIntExtra("Id", -1);
+
+                    if (id == -1) {
+                        Toast.makeText(this, "Note can't be updated", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String title = data.getStringExtra("Title");
+                    Double price = data.getDoubleExtra("Price", 0.00);
+                    String date = data.getStringExtra("Date");
+                    String description = data.getStringExtra("Description");
+
+                    Expense expense = new Expense(title, price, date, description);
+                    expense.setId(id);
+
+                    expenseViewModel.update(expense);
+
+                    Toast.makeText(this, "Expense updated", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Expense not saved", Toast.LENGTH_SHORT).show();
                 }
             });
 }

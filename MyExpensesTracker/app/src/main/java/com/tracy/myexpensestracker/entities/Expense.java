@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 public class Expense {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -24,11 +24,11 @@ public class Expense {
         this.description = description;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

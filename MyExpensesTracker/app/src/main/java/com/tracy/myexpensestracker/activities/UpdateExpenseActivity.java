@@ -3,6 +3,7 @@ package com.tracy.myexpensestracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.tracy.myexpensestracker.R;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class UpdateExpenseActivity extends AppCompatActivity {
@@ -24,6 +26,9 @@ public class UpdateExpenseActivity extends AppCompatActivity {
     private EditText editTextDescription;
 
     private Integer id;
+
+    private String category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +40,22 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.update_expense_description);
 
         // Spinner
-        Spinner mcategory = findViewById(R.id.category);
+        Spinner spinner = findViewById(R.id.category);
         String[] categories = {"Category", "Utilities", "Food", "Savings", "Housing", "Transportation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
-        mcategory.setAdapter(adapter);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // sometimes you need nothing here
+            }
+        });
 
         Intent intent = getIntent();
         id=intent.getIntExtra("Id", -1);
@@ -46,6 +63,7 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         Objects.requireNonNull(textInputLayoutPrice.getEditText()).setText(String.valueOf(intent.getDoubleExtra("Price", 0.00)));
         Objects.requireNonNull(editTextDate).setText(intent.getStringExtra("Date"));
         Objects.requireNonNull(editTextDescription).setText(intent.getStringExtra("Description"));
+        Objects.requireNonNull(spinner).setSelection(Arrays.asList(categories).indexOf(intent.getStringExtra("Category")));
     }
 
     public void back(View view) {
@@ -64,6 +82,7 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         data.putExtra("Price", price);
         data.putExtra("Date", date);
         data.putExtra("Description", description);
+        data.putExtra("Category", category);
 
         setResult(UPDATE_OK, data);
         finish();

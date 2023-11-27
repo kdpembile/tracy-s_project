@@ -24,6 +24,8 @@ public class AddExpenseActivity extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextDescription;
 
+    private String category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,38 +37,23 @@ public class AddExpenseActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.edit_text_description);
 
         // Spinner
-        Spinner mcategory = findViewById(R.id.category);
+        Spinner spinner = findViewById(R.id.category);
         String[] categories = {"Category", "Utilities", "Food", "Savings", "Housing", "Transportation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
-        mcategory.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
-        mcategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position) {
-                    case 0:
-                        Toast.makeText(parent.getContext(), "Spinner item 1!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(parent.getContext(), "Spinner item 2!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(parent.getContext(), "Spinner item 3!", Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                category = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
                 // sometimes you need nothing here
             }
         });
-
-
     }
-
 
 
     public void save(View view) {
@@ -80,6 +67,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         data.putExtra("Price", price);
         data.putExtra("Date", date);
         data.putExtra("Description", description);
+        data.putExtra("Category", category);
 
         setResult(RESULT_OK, data);
         finish();

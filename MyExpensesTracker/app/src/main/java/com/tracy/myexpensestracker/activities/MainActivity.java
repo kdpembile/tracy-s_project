@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("Price", expense.getPrice());
             intent.putExtra("Date", expense.getDate());
             intent.putExtra("Description", expense.getDescription());
+            intent.putExtra("Category", expense.getCategory());
+
             someActivityResultLauncher.launch(intent);
         });
     }
@@ -80,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
                     Double price = data.getDoubleExtra("Price", 0.00);
                     String date = data.getStringExtra("Date");
                     String description = data.getStringExtra("Description");
+                    String category = data.getStringExtra("Category");
 
-                    Expense expense = new Expense(title, price, date, description);
+                    Expense expense = new Expense(title, price, date, description, category);
                     expenseViewModel.insert(expense);
                 } else if (result.getResultCode() == UpdateExpenseActivity.UPDATE_OK && result.getData() != null) {
                     Intent data = result.getData();
@@ -97,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
                     Double price = data.getDoubleExtra("Price", 0.00);
                     String date = data.getStringExtra("Date");
                     String description = data.getStringExtra("Description");
+                    String category = data.getStringExtra("Category");
 
-                    Expense expense = new Expense(title, price, date, description);
+                    Expense expense = new Expense(title, price, date, description, category);
                     expense.setId(id);
 
                     expenseViewModel.update(expense);

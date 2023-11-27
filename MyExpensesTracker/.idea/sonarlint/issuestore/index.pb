@@ -27,9 +27,11 @@ q
 Aapp/src/main/java/com/tracy/myexpensestracker/dao/ExpenseDao.java,6\d\6d8e5db486d8d1b8fc203d9c6bc477bdecae8c8f
 }
 Mapp/src/main/java/com/tracy/myexpensestracker/viewmodel/ExpenseViewModel.java,3\2\325709e0b8690935cda66145abd4804b171e9da7
-â
-Yapp/src/main/java/com/tracy/myexpensestracker/activities/UpdateDeleteExpenseActivity.java,a\a\aaac2c72996d3edc81236f8b192e5c980944d3cb
 É
 Sapp/src/main/java/com/tracy/myexpensestracker/activities/UpdateExpenseActivity.java,1\a\1aa6c0841626d11d6cd014874f0d99d1dd9375a1
 Å
 Q.idea/sonarlint/securityhotspotstore/1/a/1aa6c0841626d11d6cd014874f0d99d1dd9375a1,b\9\b9a965f871ad17fcee85a12f1365459fb14f6881
+Å
+Q.idea/sonarlint/securityhotspotstore/b/9/b9a965f871ad17fcee85a12f1365459fb14f6881,1\e\1ea27e3f263b9b59b85a69905d0cfa960741f2a2
+w
+G.idea/sonarlint/issuestore/b/9/b9a965f871ad17fcee85a12f1365459fb14f6881,a\8\a8c0f5e455536f35afbd34fbc5d988477e5fff02

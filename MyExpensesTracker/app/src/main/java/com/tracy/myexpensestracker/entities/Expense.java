@@ -17,11 +17,14 @@ public class Expense {
 
     private String description;
 
-    public Expense(String title, Double price, String date, String description) {
+    private String category;
+
+    public Expense(String title, Double price, String date, String description, String category) {
         this.title = title;
         this.price = price;
         this.date = date;
         this.description = description;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -62,5 +65,13 @@ public class Expense {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

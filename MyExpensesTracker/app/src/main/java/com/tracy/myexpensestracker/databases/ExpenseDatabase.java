@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.tracy.myexpensestracker.dao.ExpenseDao;
 import com.tracy.myexpensestracker.entities.Expense;
 
-@Database(entities = {Expense.class}, version = 2)
+@Database(entities = {Expense.class}, version = 3)
 public abstract class ExpenseDatabase extends RoomDatabase {
 
     private static ExpenseDatabase instance;
@@ -47,8 +47,8 @@ public abstract class ExpenseDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            expenseDao.insert(new Expense("Meralco", 2500.00, "11/27/2023", "Meralco bill for december paid."));
-            expenseDao.insert(new Expense("Credit Card", 2500.00, "11/27/2023", "Credit card bill for december paid."));
+            expenseDao.insert(new Expense("Meralco", 2500.00, "11/27/2023", "Meralco bill for december paid.", "Housing"));
+            expenseDao.insert(new Expense("Credit Card", 2500.00, "11/27/2023", "Credit card bill for december paid.", "Housing"));
             return null;
         }
     }

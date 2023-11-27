@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 expenseViewModel.delete(expenseRecyclerAdapter.getExpenseAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(MainActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Expense deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     int id = data.getIntExtra("Id", -1);
 
                     if (id == -1) {
-                        Toast.makeText(this, "Note can't be updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Expense can't be updated", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

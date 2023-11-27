@@ -54,17 +54,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
-        expenseRecyclerAdapter.setOnItemClickListener(new ExpenseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Expense expense) {
-                Intent intent = new Intent(MainActivity.this, UpdateExpenseActivity.class);
-                intent.putExtra("Id", expense.getId());
-                intent.putExtra("Title", expense.getTitle());
-                intent.putExtra("Price", expense.getPrice());
-                intent.putExtra("Date", expense.getDate());
-                intent.putExtra("Description", expense.getDescription());
-                someActivityResultLauncher.launch(intent);
-            }
+        expenseRecyclerAdapter.setOnItemClickListener(expense -> {
+            Intent intent = new Intent(MainActivity.this, UpdateExpenseActivity.class);
+            intent.putExtra("Id", expense.getId());
+            intent.putExtra("Title", expense.getTitle());
+            intent.putExtra("Price", expense.getPrice());
+            intent.putExtra("Date", expense.getDate());
+            intent.putExtra("Description", expense.getDescription());
+            someActivityResultLauncher.launch(intent);
         });
     }
 

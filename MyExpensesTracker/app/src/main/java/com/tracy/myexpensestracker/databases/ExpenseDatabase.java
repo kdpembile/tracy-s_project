@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.tracy.myexpensestracker.dao.ExpenseDao;
 import com.tracy.myexpensestracker.entities.Expense;
 
-@Database(entities = {Expense.class}, version = 1)
+@Database(entities = {Expense.class}, version = 2)
 public abstract class ExpenseDatabase extends RoomDatabase {
 
     private static ExpenseDatabase instance;

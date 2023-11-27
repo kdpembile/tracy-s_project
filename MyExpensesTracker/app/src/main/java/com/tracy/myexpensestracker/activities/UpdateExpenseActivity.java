@@ -21,6 +21,7 @@ public class UpdateExpenseActivity extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextDescription;
 
+    private Integer id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +33,9 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.update_expense_description);
 
         Intent intent = getIntent();
-
+        id=intent.getIntExtra("Id", -1);
         Objects.requireNonNull(textInputLayoutTitle.getEditText()).setText(intent.getStringExtra("Title"));
-        Objects.requireNonNull(textInputLayoutPrice.getEditText()).setText(intent.getStringExtra("Price"));
+        Objects.requireNonNull(textInputLayoutPrice.getEditText()).setText(String.valueOf(intent.getDoubleExtra("Price", 0.00)));
         Objects.requireNonNull(editTextDate).setText(intent.getStringExtra("Date"));
         Objects.requireNonNull(editTextDescription).setText(intent.getStringExtra("Description"));
     }
@@ -50,6 +51,7 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         String description = Objects.requireNonNull(editTextDescription.getText().toString());
 
         Intent data = new Intent();
+        data.putExtra("Id", id);
         data.putExtra("Title", title);
         data.putExtra("Price", price);
         data.putExtra("Date", date);

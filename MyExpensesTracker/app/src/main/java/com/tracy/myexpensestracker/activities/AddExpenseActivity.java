@@ -3,7 +3,11 @@ package com.tracy.myexpensestracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +33,41 @@ public class AddExpenseActivity extends AppCompatActivity {
         textInputLayoutPrice = findViewById(R.id.text_input_price);
         editTextDate = findViewById(R.id.edit_text_date);
         editTextDescription = findViewById(R.id.edit_text_description);
+
+        // Spinner
+        Spinner mcategory = findViewById(R.id.category);
+        String[] categories = {"Category", "Utilities", "Food", "Savings", "Housing", "Transportation"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
+        mcategory.setAdapter(adapter);
+
+        mcategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+                        Toast.makeText(parent.getContext(), "Spinner item 1!", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(parent.getContext(), "Spinner item 2!", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(parent.getContext(), "Spinner item 3!", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                // sometimes you need nothing here
+            }
+        });
+
+
     }
+
+
 
     public void save(View view) {
         String title = Objects.requireNonNull(textInputLayoutTitle.getEditText()).getText().toString();

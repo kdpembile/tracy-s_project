@@ -3,7 +3,9 @@ package com.tracy.myexpensestracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +33,12 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         textInputLayoutPrice = findViewById(R.id.update_expense_price);
         editTextDate = findViewById(R.id.update_expense_date);
         editTextDescription = findViewById(R.id.update_expense_description);
+
+        // Spinner
+        Spinner mcategory = findViewById(R.id.category);
+        String[] categories = {"Category", "Utilities", "Food", "Savings", "Housing", "Transportation"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
+        mcategory.setAdapter(adapter);
 
         Intent intent = getIntent();
         id=intent.getIntExtra("Id", -1);

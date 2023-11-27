@@ -76,7 +76,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="date"
+            android:hint="Date"/>
 
         <EditText
             android:id="@+id/update_expense_description"
@@ -87,7 +88,18 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:hint="Description"/>
+
+        <Spinner
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_update"
